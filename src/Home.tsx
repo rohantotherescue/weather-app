@@ -3,6 +3,7 @@ import React, {useState} from 'react'
 import { deviceHeight, deviceWidth } from './Dimensions'
 import Icon from 'react-native-vector-icons/Ionicons';
 import { cities } from './Cities';
+import Cards from './Cards';
 
 
 const Home= ()=>  {
@@ -13,10 +14,10 @@ const Home= ()=>  {
         <View style= {styles.sneed}>
             <View style=  {styles.head}>
             <Icon name="menu" size={46} color="white" />
-            {/* <Image
-            source={require('../assets/images/user.jpg')}
+            <Image
+            source={require('../assets/images/user.png')}
             style={{height: 46, width: 46, borderRadius: 50}}
-          /> */}
+          />
             </View>
             <View style={{paddingHorizontal: 20, marginTop: 100}}>
             <Text style={{fontSize: 40, color: 'white'}}>Hello Rohan.</Text>
@@ -39,9 +40,8 @@ const Home= ()=>  {
           <Text style={styles.savedLocations}>
             Saved Locations
           </Text>
-            <FlatList horizontal data={cities} renderItem={() => (
-                <View>
-                    </View>
+            <FlatList horizontal data={cities} renderItem={({item}) => (
+                <Cards name= {item.name} image= {item.image}/>
   )}/>
             </View>
             <View>
@@ -59,7 +59,7 @@ const styles= StyleSheet.create(
         bgImg: {
             height: deviceHeight,
             width: deviceWidth,
-            opacity: 0.6,
+            opacity: 0.7,
             backgroundColor: 'black'
         },
         sneed: {

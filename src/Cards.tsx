@@ -6,11 +6,12 @@ import {deviceHeight, deviceWidth} from './Dimensions';
 type CitiesProp= PropsWithChildren<{
     name: string;
     image: any;
+    props: any;
 }>
 
-const Cards= ({name, image}: CitiesProp) => {
+const Cards= ({name, image, props}: CitiesProp) => {
   return (
-        <TouchableOpacity style= {{marginHorizontal: 10}}>
+        <TouchableOpacity style= {{marginHorizontal: 10}} onPress={()=> {props.navigation.navigate('Details', {name: name})}}>
       <ImageBackground source={image} style= {styles.Img} imageStyle={{borderRadius: 16}}>
       </ImageBackground>
       <View style={{position: 'absolute', height: '100%', width: '100%'}}>

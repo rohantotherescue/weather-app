@@ -6,7 +6,7 @@ import { cities } from './Cities';
 import Cards from './Cards';
 
 
-const Home= ()=>  {
+const Home= (props : any)=>  {
     const [city, setCity] = useState('');
   return (
     <View>
@@ -33,7 +33,7 @@ const Home= ()=>  {
               placeholderTextColor="white"
               style={styles.searchInput}
             />
-            <TouchableOpacity onPress={() =>{}}>
+            <TouchableOpacity onPress={() =>props.navigation.navigate('Details', {name: city})}>
               <Icon name="search" size={22} color="white" />
             </TouchableOpacity>
           </View>
@@ -41,7 +41,7 @@ const Home= ()=>  {
             Saved Locations
           </Text>
             <FlatList horizontal data={cities} renderItem={({item}) => (
-                <Cards name= {item.name} image= {item.image}/>
+                <Cards name= {item.name} image= {item.image} props= {props}/>
   )}/>
             </View>
             <View>

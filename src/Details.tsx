@@ -3,18 +3,21 @@ import React, {useEffect, useState} from 'react'
 import { deviceHeight, deviceWidth } from './Dimensions'
 import Icon from 'react-native-vector-icons/Ionicons';
 import { API_KEY } from './Constants';
+import { useGetWeatherByCityQuery } from './weatherApi';
 
 export default function Details(props : any) {
     const {name} = props.route.params;  // extracting props
 
-    const [data, setData] = useState();
+    // const [data, setData] = useState();
 
-    useEffect(()=>{
-        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${name}&appid=${API_KEY}`)
-        .then(res=> res.json())
-        .then(res => setData(res))
-        .catch(err => console.log(err))
-    }, []);
+    // useEffect(()=>{
+    //     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${name}&appid=${API_KEY}`)
+    //     .then(res=> res.json())
+    //     .then(res => setData(res))
+    //     .catch(err => console.log(err))
+    // }, []);
+
+    const { data, isLoading } = useGetWeatherByCityQuery(name);
 
     const Data = ({title, value}: any) => (
         <View
@@ -24,6 +27,13 @@ export default function Details(props : any) {
         </View>
       );
 
+      if (isLoading) {
+        return <Text>Loading...</Text>;
+      }
+    
+      // if (error) {
+      //   return <Text>Error: {error.message}</Text>;
+      // }
   return (
     <View>
       <ImageBackground source={require('../assets/images/background.png')} style= {styles.bgImg} imageStyle= {styles.bgImg}>

@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react'
 import { deviceHeight, deviceWidth } from './Dimensions'
 import Icon from 'react-native-vector-icons/Ionicons';
 import { API_KEY } from './Constants';
-import { useGetWeatherByCityQuery } from './weatherApi';
+import { useGetWeatherByCityQuery } from './WeatherApi';
 
 export default function Details(props : any) {
     const {name} = props.route.params;  // extracting props
